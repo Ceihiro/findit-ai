@@ -85,7 +85,7 @@ Keep the project in a short folder like `C:\dev`, **not** on the Desktop and **n
 ```
 mkdir C:\dev
 cd C:\dev
-git clone https://github.com/mine/findit-ai.git
+git clone https://github.com/Ceihiro/findit-ai.git
 cd findit-ai
 ```
 

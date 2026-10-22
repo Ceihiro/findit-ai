@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Possible matches{% endblock %}
+{% block content %}
+<h1>Possible matches</h1>
+<p class="lost-summary">
+  Your report: <strong>{{ lost.category }}</strong> &middot; {{ lost.color }}
+  {% if lost.brand %}&middot; {{ lost.brand }}{% endif %} &middot; {{ lost.description }}
+  <br><small>{{ lost.location }} &middot; {{ lost.event_time }}</small>
+</p>
+
+{% if ranked %}
+  {% for r in ranked %}
+  <article class="match">
+    <h2>#{{ loop.index }} &middot; Score {{ (r.final_score * 100)|round|int }}%</h2>
+    <p>
+      <strong>{{ r.found.category }}</strong> &middot; {{ r.found.color }}
+      {% if r.found.brand %}&middot; {{ r.found.brand }}{% endif %}<br>
+      {{ r.found.description }}<br>
+      <small>{{ r.found.location }} &middot; {{ r.found.event_time }}</small>
+    </p>
+    <p class="scores">
+      Attribute score: {{ (r.attribute_score * 100)|round|int }}% &middot;
+      Text similarity: {{ (r.text_score * 100)|round|int }}%
+    </p>
+    <details open>
+      <summary>Why it matched</summary>
+      <ul>{% for reason in r.reasons %}<li>{{ reason }}</li>{% else %}<li>No strong reasons found.</li>{% endfor %}</ul>
+    </details>
+
+    <!-- TODO (team): show this form only to logged-in staff. -->
+    <form method="post" action="{{ url_for('claim') }}" class="claim">
+      <p><small>Staff: ask the claimant for a detail that was not published
+      {% if r.found.private_detail %}(a private detail is on file){% endif %}, then record the result.</small></p>
+      <input type="hidden" name="lost_id" value="{{ lost.id }}">
+      <input type="hidden" name="found_id" value="{{ r.found.id }}">
+      <select name="outcome">
+        <option>Pending</option><option>Verified</option><option>Not Verified</option>
+      </select>
+      <input name="notes" placeholder="notes (optional)">
+      <button type="submit">Save result</button>
+    </form>
+  </article>
+  {% endfor %}
+{% else %}
+  <p>No found items to compare with yet. Check again later.</p>
+{% endif %}
+<p><a href="{{ url_for('index') }}">Back to home</a></p>
+{% endblock %}

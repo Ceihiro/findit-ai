@@ -1,0 +1,24 @@
+<label>Category
+  <select name="category" required>
+    {% for c in cfg.CATEGORIES %}<option>{{ c }}</option>{% endfor %}
+  </select>
+</label>
+<label>Color
+  <select name="color">
+    {% for c in cfg.COLORS %}<option>{{ c }}</option>{% endfor %}
+  </select>
+</label>
+<label>Brand (optional)
+  <input name="brand" placeholder="e.g. Casio">
+</label>
+<label>Description
+  <textarea name="description" rows="3" required placeholder="e.g. black scientific calculator with a sticker"></textarea>
+</label>
+<label>Room / location
+  <select name="location" required>
+    {% for l in cfg.LOCATIONS %}<option>{{ l }}</option>{% endfor %}
+  </select>
+</label>
+<label>Date and time
+  <input type="datetime-local" name="event_time" value="{{ now }}" required>
+</label>

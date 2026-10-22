@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Log a found item{% endblock %}
+{% block content %}
+<h1>Log a found item</h1>
+<form method="post">
+  {% include "_fields.html" %}
+  <label>Where is it kept now?
+    <input name="storage_place" placeholder="e.g. Faculty room cabinet">
+  </label>
+  <label>Private detail (hidden from the public)
+    <input name="private_detail" placeholder="e.g. sticker on the back, scratch, name inside">
+  </label>
+  <button type="submit">Save found item</button>
+</form>
+{% endblock %}

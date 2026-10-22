@@ -227,9 +227,3 @@ The sample files have only 5 lost and 7 found reports, and every method scores 1
 - Photos are not analyzed in this version.
 - The system cannot confirm ownership. A staff member must always verify the claim.
 - Test results from simulated data are for testing only.
-
-## Project information
-
-- **Course:** CSE 103 Intelligent System
-- **School:** Kolehiyo ng Lungsod ng Lipa (KLL), Computer Studies Department
-- **Repository:** https://github.com/mine/findit-ai
